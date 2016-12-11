@@ -89,12 +89,12 @@ echo -e ""
 
 #Create the new custom AMI
 echo -e "\033[0;32mCreating a new gold AMI, this will take several minutes to complete. \033[0m"
-imageID=$(aws ec2 create-image --instance-id $instanceId --name "MasterWebServer" --description "Master Web Server Image" --query 'ImageId' --output text)
+imageId=$(aws ec2 create-image --instance-id $instanceId --name "MasterWebServer" --description "Master Web Server Image" --query 'ImageId' --output text)
 
 #We again do this to wait for the image to get in a known state in the backend
 while [  "$imageState" == "" ]; do
 	echo "The image is still in an unkown state, please wait..."
-	imageState=$(aws ec2 describe-images --image-id ami-e3b9baf4 --query 'Images[*].State' --output text)
+	imageState=$(aws ec2 describe-images --image-id $imageId --query 'Images[*].State' --output text)
 	sleep 5
 done
 
@@ -104,7 +104,7 @@ imageState="pending"
 while [  "$imageState" == "pending" ]; do
 	        echo The image is still $imageState ...
 
-		imageState=$(aws ec2 describe-images --image-id ami-e3b9baf4 --query 'Images[*].State' --output text)
+		imageState=$(aws ec2 describe-images --image-id $imageId --query 'Images[*].State' --output text)
 	        sleep 15
 done
 
@@ -115,4 +115,9 @@ echo -e ""
 #Terminate the original image
 echo -e "\033[0;32mDeleting the original image. \033[0m"
 aws ec2 terminate-instances --instance-ids $instanceId --output table
+echo ""
 
+echo "Remember the following information:"
+echo Your Security Group ID is $groupId
+echo Your Gold AMI Image ID is $imageId
+echo Your PEM file for the finalProject key is in ~./ssh
