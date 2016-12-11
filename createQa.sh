@@ -1,4 +1,7 @@
 #!/bin/bash
+#This will provision a stack with cloudFormation named qaStack and the qaDeploy.json with the finalProject keypair.
+#Wil Birkmaier
+
 echo -e "\033[0;32mCreating your stack: \033[0m"
 aws cloudformation create-stack --stack-name qaStack --template-body file://./qaDeploy.json --parameters  ParameterKey=KeyName,ParameterValue=finalProject
 echo ""
