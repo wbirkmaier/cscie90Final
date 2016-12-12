@@ -17,7 +17,7 @@
         "SecurityGroups" : [ { "Ref" : "InstanceSecurityGroup" }, "WebService" ],
         "KeyName" : { "Ref" : "KeyName"},
 	"InstanceType" : "t2.micro",
-        "ImageId" : "ami-9a47458d"
+        "ImageId" : "ami-37888a20"
       }
     },
 
@@ -27,7 +27,7 @@
         "SecurityGroups" : [ { "Ref" : "InstanceSecurityGroup" }, "WebService" ],
         "KeyName" : { "Ref" : "KeyName"},
         "InstanceType" : "t2.micro",
-        "ImageId" : "ami-9a47458d"
+        "ImageId" : "ami-37888a20"
       }
     },
 
@@ -37,7 +37,7 @@
         "SecurityGroups" : [ { "Ref" : "InstanceSecurityGroup" }, "WebService" ],
         "KeyName" : { "Ref" : "KeyName"},
         "InstanceType" : "t2.micro",
-        "ImageId" : "ami-9a47458d"
+        "ImageId" : "ami-37888a20"
       }
     },
 
